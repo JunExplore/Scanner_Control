@@ -6,7 +6,7 @@
 class LogOutPut : public QTextBrowser{
     Q_OBJECT
 public:
-    LogOutPut();
+    LogOutPut(QWidget *parent);
     ~LogOutPut();
 
     void outputProcessMsg(QString str);

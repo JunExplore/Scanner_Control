@@ -14,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->glWindow->setWidgetResizable(true);
     ui->glWindow->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
 
-    consoleOutput = new LogOutPut();
+    consoleOutput = new LogOutPut(this);
     QGroupBox *consoleGroup = new QGroupBox;
     QHBoxLayout *consoleLayout = new QHBoxLayout;
     consoleLayout->addWidget(consoleOutput);
@@ -51,7 +51,7 @@ void MainWindow::getX_position()
     QString x_pos_val_s = ui->x_positon_lineedit->text();
     bool ok;
     x_pos = x_pos_val_s.toInt(&ok, 16);
-    consoleOutput->append("x pos is:" + x_pos_val_s);
+    consoleOutput->outputProcessMsg("x pos is:" + x_pos_val_s);
 }
 
 
@@ -60,14 +60,17 @@ void MainWindow::getY_position()
     QString y_pos_val_s = ui->y_positon_lineedit->text();
     bool ok;
     y_pos = y_pos_val_s.toInt(&ok, 16);
-    qDebug("%d", y_pos);
+    consoleOutput->outputProcessMsg("x pos is:" + y_pos_val_s);
 }
 
 void MainWindow::start_sendData()
 {
-    x_pos = x_pos << 16;
-    uint32_t xy_pos = x_pos + y_pos;
+    consoleOutput->outputProcessMsg("ceshi shuchu");
+
+    uint32_t tmp = x_pos << 16;
+    uint32_t xy_pos = tmp + y_pos;
     data->fillBuffer(xy_pos);
     data->dataSend(spi_dev);
+    consoleOutput->outputProcessMsg("x pos is:" + QString::number(xy_pos, 10));
     qDebug("%d", xy_pos);
 }

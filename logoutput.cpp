@@ -1,13 +1,18 @@
 #include "logoutput.h"
 
-LogOutPut::LogOutPut()
+LogOutPut::LogOutPut(QWidget *parent)
+    :QTextBrowser(parent)
+{
+    setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
+}
+LogOutPut::~LogOutPut()
 {
 
 }
 
-LogOutPut::~LogOutPut()
+void LogOutPut::outputProcessMsg(QString str)
 {
-
+    append(str);
 }
 
 

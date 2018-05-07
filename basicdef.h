@@ -3,6 +3,8 @@
 
 #include "logoutput.h"
 
-LogOutPut * consoleOutput;
+LogOutPut *consoleOutput;
+
+
 
 #endif // BASICDEF_H
